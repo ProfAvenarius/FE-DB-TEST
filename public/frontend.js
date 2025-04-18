@@ -118,7 +118,16 @@ function onMessageSent(e) {
 
 // Initialize everything when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Get username from global variable (will be set in the EJS template)
+
+    // Add navbar toggle functionality
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (navbarToggler) {
+        navbarToggler.addEventListener('click', function() {
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        navbarCollapse.classList.toggle('show');
+        });
+    }
+    // Get username from global variable 
     username = chatUsername; // This will be defined in the EJS template
     
     // Get DOM elements
