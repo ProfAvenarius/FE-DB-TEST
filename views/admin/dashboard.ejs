@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">Admin Dashboard</h2>
+            </div>
+            <div class="card-body">
+                <h3>User Management</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Join Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user => { %>
+                                <tr>
+                                    <td><a href="/profile/<%= user.username %>"><%= user.username %></a></td>
+                                    <td><%= user.role === 'admin' ? 'Administrator' : 'User' %></td>
+                                    <td><%= new Date(user.joinDate).toLocaleDateString() %></td>
+                                    <td>
+                                        <% if (user._id.toString() !== currentUserId.toString()) { %>
+                                            <form action="/admin/removeUser/<%= user._id %>" method="POST" onsubmit="return confirm('Are you sure you want to remove this user?')">
+                                                <button type="submit" class="btn btn-sm btn-danger">Remove User</button>
+                                            </form>
+                                        <% } else { %>
+                                            <span class="text-muted">Current User</span>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

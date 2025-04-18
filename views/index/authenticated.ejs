@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">Chat Room</h2>
+            </div>
+            <div class="card-body">
+                <div class="chat-container d-flex flex-column" id="chatMessages">
+                    <% if (messages && messages.length > 0) { %>
+                        <% messages.forEach(message => { %>
+                            <div class="message <%= message.sender === username ? 'my-message' : 'other-message' %>">
+                                <div class="message-sender"><%= message.sender %></div>
+                                <div class="message-content"><%= message.content %></div>
+                                <div class="message-timestamp"><%= new Date(message.timestamp).toLocaleString() %></div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <div class="system-message">No messages yet. Be the first to send one!</div>
+                    <% } %>
+                </div>
+                <form id="messageForm" class="mt-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="messageInput" placeholder="Type your message..." required>
+                        <button class="btn btn-primary" type="submit">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Online Users</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group" id="onlineUsers">
+                    <!-- Online users will be populated via WebSocket -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pass the username from server to client -->
+<script>
+    const chatUsername = '<%= username %>';
+</script>
+
+<!-- Include the external frontend.js file -->
+<script src="/frontend.js"></script>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0"><%= isSelf ? 'My Profile' : `${user.username}'s Profile` %></h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <div class="bg-light rounded-circle d-flex justify-content-center align-items-center mx-auto" style="width: 150px; height: 150px;">
+                            <span class="display-1 text-muted"><%= user.username.charAt(0).toUpperCase() %></span>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h3><%= user.username %></h3>
+                        <p><strong>Role:</strong> <%= user.role === 'admin' ? 'Administrator' : 'User' %></p>
+                        <p><strong>Joined:</strong> <%= new Date(user.joinDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+                        
+                        <% if (isSelf) { %>
+                            <div class="mt-4">
+                                <a href="/dashboard" class="btn btn-primary">Back to Chat</a>
+                            </div>
+                        <% } else { %>
+                            <div class="mt-4">
+                                <a href="/dashboard" class="btn btn-primary">Send Message</a>
+                                <a href="/dashboard" class="btn btn-outline-primary">Back to Chat</a>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
