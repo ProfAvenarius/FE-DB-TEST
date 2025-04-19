@@ -158,6 +158,7 @@
     box-shadow: var(--shadow);
     margin-bottom: 1.5rem;
     color: #333;
+    
   }
   
   .card-header {
@@ -178,6 +179,7 @@
   
   .card-body {
     padding: 1.25rem;
+    align-items: flex-start;
   }
   
   /* Forms */
@@ -562,15 +564,3 @@
     display: block;
   }
   
-  /* Add this to your frontend.js to handle navbar toggling */
-  /* 
-  document.addEventListener('DOMContentLoaded', function() {
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    if (navbarToggler) {
-      navbarToggler.addEventListener('click', function() {
-        const navbarCollapse = document.querySelector('.navbar-collapse');
-        navbarCollapse.classList.toggle('show');
-      });
-    }
-  });
-  */

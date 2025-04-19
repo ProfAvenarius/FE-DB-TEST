@@ -38,10 +38,10 @@ function updateOnlineUsers(users) {
     onlineUsersList.innerHTML = '';
     users.forEach(user => {
         const li = document.createElement('li');
-        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+        li.className = 'list-group-item';
         
         if (user === username) {
-            li.innerHTML = `${user} <span class="badge bg-primary">You</span>`;
+            li.innerHTML = `${user} <span class="bg-primary">You</span>`;
         } else {
             li.innerHTML = `<a href="/profile/${user}" class="text-decoration-none">${user}</a>`;
         }
